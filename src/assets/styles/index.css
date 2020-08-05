@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "FocoRegular";
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 1.27;
+    src: url("../fonts/foco_std_rg-webfont.eot?");
+    src: url("../fonts/foco_std_rg-webfont.eot?putcap#iefix") format("embedded-opentype"),
+        url("../fonts/foco_std_rg-webfont.ttf?putcap") format("truetype"),
+        url("../fonts/foco_std_rg-webfont.woff?putcap") format("woff"),
+        url("../fonts/foco_std_rg-webfont.svg?putcap#alimenta") format("svg");
+    font-display: swap;
+}
+
+body {
+    margin: 0;
+    font-family: "FocoRegular";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--body-bg);
+    color: var(--body-color);
+}
+html,
+body,
+#root {
+    margin: 0;
+    height: 100%;
+}
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+/*agrehar css solo el minimo necesario*/

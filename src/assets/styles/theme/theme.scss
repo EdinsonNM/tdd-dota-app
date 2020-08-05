@@ -1,0 +1,38 @@
+@mixin theme-dark {
+    --body-bg: #212529;
+    --body-bg-secondary: #3c4043;
+    --body-color: #6c757d;
+    --link-color: #dee2e6;
+    --link-color-hover: #fff;
+    --primary-color: #fff;
+    --default-color: #fff;
+}
+@mixin theme-light {
+    --body-bg: #0099cc;
+    --body-bg-secondary: #fafafa;
+    --body-color: #f8f8f8;
+    --link-color: #dee2e6;
+    --link-color-hover: #fff;
+    --default-color: #fff;
+    --primary-color: #5e5e5e;
+}
+
+:root {
+    @include theme-light;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include theme-dark;
+    }
+}
+@media (prefers-color-scheme: light) {
+    :root {
+        @include theme-light;
+    }
+}
+[data-theme="dark"] {
+    @include theme-dark;
+}
+[data-theme="light"] {
+    @include theme-light;
+}

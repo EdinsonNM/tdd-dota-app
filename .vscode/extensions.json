@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "wix.vscode-import-cost",
+        "alefragnani.bookmarks",
+        "aaron-bond.better-comments",
+        "mikestead.dotenv",
+        "remimarsal.prettier-now",
+        "rafamel.subtle-brackets",
+        "visualstudioexptteam.vscodeintellicode",
+        "msjsdiag.debugger-for-chrome",
+        "esbenp.prettier-vscode",
+        "oderwat.indent-rainbow",
+        "amatiasq.sort-imports"
+    ]
+}

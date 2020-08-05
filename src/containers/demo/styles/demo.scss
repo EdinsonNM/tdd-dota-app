@@ -1,0 +1,36 @@
+.demo {
+    color: var(--default-color);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &__container {
+        display: flex;
+        flex-direction: column;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        text-align: center;
+    }
+    &__img-react {
+        width: 80px;
+        animation: rotate 1s linear infinite;
+    }
+    &__card {
+        margin-top: 20px;
+        background-color: var(--body-bg-secondary);
+        padding: 20px;
+        color: var(--primary-color);
+    }
+    @keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}

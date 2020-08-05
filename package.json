@@ -1,0 +1,93 @@
+{
+  "name": "tdd-dota-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@pacificoseguros/pixie": "0.1.0-beta.21",
+    "@testing-library/jest-dom": "^5.11.2",
+    "@testing-library/react": "^10.4.8",
+    "@testing-library/user-event": "^12.1.0",
+    "bundlesize": "^0.18.0",
+    "husky": "^4.2.5",
+    "lighthouse": "^6.1.1",
+    "lint-staged": "^10.2.11",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.0.5",
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hook-form": "^4.10.2",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-actions": "^2.6.5",
+    "redux-logger": "^3.0.6",
+    "redux-observable": "^1.2.0",
+    "rxjs": "^6.6.2",
+    "web-vitals": "^0.2.4",
+    "webpack-bundle-analyzer": "^3.8.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "bundlesize": "bundlesize",
+    "lh": "lighthouse http://localhost:5000 --output html --output-path ./tmp/report.html --view",
+    "analyze": "node tools/analyze.js",
+    "deadfile": "npx deadfile ./src/index.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "plugin:prettier/recommended"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "prettier": {
+    "printWidth": 90,
+    "bracketSpacing": false,
+    "trailingComma": "es5",
+    "tabWidth": 4
+  },
+  "bundlesize": [
+    {
+      "path": "./build/static/js/main**.js",
+      "maxSize": "100 kB"
+    },
+    {
+      "path": "./build/static/js/**.js",
+      "maxSize": "100 kB"
+    },
+    {
+      "path": "./build/static/css/**.css",
+      "maxSize": "10 kB"
+    },
+    {
+      "path": "./build/static/media/**.*",
+      "maxSize": "50 kB"
+    }
+  ],
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
