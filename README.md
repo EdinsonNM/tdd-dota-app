@@ -20,8 +20,22 @@ La app a construir ha sido diseñada en sketch para tener una referencia de lo q
 
 Para iniciar con la replica de la demo emepezaremos por ejecutar el siguiente comando:
 
-```shell
+```sh
 npx create-react-app tdd-dota-app --template @pacificoseguros/cra-template-pacifico
 ```
 
 Una vez ejecutado el proyecto podemos conocer mas a detalle sobre la estructura del proyecto en el enlace: [conoce mas sobre el boilerplate](./readme-doc-boilerplate.md).
+
+## Variables de entorno
+
+Para iniciar le proyecto es necesario configurar las variable de conexión a los servicios, para ellos es necesario crear un archivo `.env.local` y agregar
+
+```sh
+REACT_APP_SERVER_URL='https://api.opendota.com/api'
+```
+
+## servicios que se usaran
+
+para validar si el usuario existe :
+
+-   [GET]https://api.opendota.com/api/players/{account-id}

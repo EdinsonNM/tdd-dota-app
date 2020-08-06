@@ -4,13 +4,16 @@ import {Button, TextField} from "@pacificoseguros/pixie/react";
 
 import "./styles/login.scss";
 import logo from "../../assets/images/logo.png";
+import {useDispatch} from "react-redux";
+import {loginAction} from "../../redux/login/actions";
+
 export default function Login() {
     const {handleSubmit, errors, control} = useForm();
     const [error, setError] = useState(false);
+    const dispatch = useDispatch();
     const onSubmit = (data) => {
-        if (data.apikey !== "123") {
-            setError("Data es requerida");
-        }
+        console.log("se llamo...");
+        dispatch(loginAction(data.userid));
     };
 
     return (
@@ -27,13 +30,20 @@ export default function Login() {
 
                 <Controller
                     control={control}
-                    name="apikey"
+                    name="userid"
                     rules={{required: true}}
                     defaultValue={""}
-                    as={<TextField type="text" placeholder="Ingresa tu api key" fluid />}
+                    as={
+                        <TextField
+                            data-testid="userid"
+                            type="text"
+                            placeholder="Ingresa tu id de usuario"
+                            fluid
+                        />
+                    }
                 />
 
-                {errors.apikey && <div role="alert">api key es requerido</div>}
+                {errors.userid && <div role="alert">api key es requerido</div>}
                 {error && <div role="alert">api key es icorrecto</div>}
                 <Button type="submit" kind="primary" fluid>
                     Ingresar

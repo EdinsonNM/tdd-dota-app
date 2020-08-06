@@ -4,44 +4,48 @@ import {throwError} from "rxjs";
 import mock from "xhr-mock";
 import {of} from "rxjs";
 import {catchError} from "rxjs/operators";
+import {PlayerBuilder} from "../../constants/mocks/player.mock";
 const {build, fake, sequence, arrayOf} = require("test-data-bot");
+import {OpenDotaApiUrl} from "../../constants/api";
+const REACT_APP_SERVER_URL = "http://test.com";
+const OLD_ENV = process.env;
 
-beforeAll(() => {
-    process.env = Object.assign(process.env, {
-        REACT_APP_SERVER_URL: "http://www.testapi.com",
-    });
-});
 describe("OpenDotaApi", () => {
-    describe("getAll", () => {
+    beforeAll(() => {
+        process.env = {...OLD_ENV, REACT_APP_SERVER_URL};
+    });
+    describe("getPlayer", () => {
+        const USER_ID = 123;
+        const URL_PLAYER = `${REACT_APP_SERVER_URL}/${OpenDotaApiUrl.getPlayer(123)}`;
         beforeEach(() => mock.setup());
-        afterEach(() => mock.teardown());
-        test("should return [1,2,3] when response is 200", (done) => {
-            const responseBuilder = build("User").fields({
-                name: fake((f) => f.name.findName()),
-                email: sequence((x) => `jack${x}@test.com`),
-                age: 26,
+
+        test("should return success data when response is 200", (done) => {
+            const player = PlayerBuilder();
+            mock.get(URL_PLAYER, {
+                body: JSON.stringify(player),
             });
-            const data = [responseBuilder(), responseBuilder()];
-            console.log(data);
-            mock.get(`${process.env.REACT_APP_SERVER_URL}/data`, {
-                body: JSON.stringify(data),
-            });
-            OpenDotaApi.getAll().subscribe((result) => {
-                expect(result.response).toEqual(data);
+            OpenDotaApi.getPlayer(USER_ID).subscribe((result) => {
+                expect(result.response).toEqual(player);
                 expect(result.status).toEqual(200);
                 done();
             });
         });
 
-        test("error getAll", (done) => {
-            mock.get(`${process.env.REACT_APP_SERVER_URL}/data`, {
-                status: 404,
-            });
-            const expectedData = [1, 2, 3];
-            OpenDotaApi.getAll().subscribe(null, (error) => {
-                expect(error.status).toEqual(404);
-                done();
-            });
-        });
+        test.each([400, 404, 500])(
+            "should return error whe  response is 404",
+            (status, done) => {
+                mock.get(URL_PLAYER, {
+                    status: status,
+                });
+                OpenDotaApi.getPlayer(USER_ID).subscribe(null, (error) => {
+                    expect(error.status).toEqual(status);
+                    done();
+                });
+            }
+        );
+        afterEach(() => mock.teardown());
+    });
+    afterAll(() => {
+        process.env = OLD_ENV;
     });
 });
