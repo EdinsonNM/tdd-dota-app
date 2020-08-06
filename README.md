@@ -34,6 +34,10 @@ Para iniciar le proyecto es necesario configurar las variable de conexión a los
 REACT_APP_SERVER_URL='https://api.opendota.com/api'
 ```
 
+## Entendiendo los requisitos de la app
+
+-   [Ver las historias de usuarios](./user-story.md)
+
 ## servicios que se usaran
 
 para validar si el usuario existe :
