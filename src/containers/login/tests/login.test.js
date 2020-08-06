@@ -6,11 +6,16 @@ import {loginAction} from "../../../redux/login/actions";
 import {renderWithRedux} from "../../../libs/testUtils";
 const mockDispatch = jest.fn();
 jest.mock("react-redux", () => ({
-    useSelector: jest.fn((fn) => fn()),
+    useSelector: jest.fn((fn) => fn({})),
     useDispatch: () => mockDispatch,
 }));
 
 describe("login", () => {
+    beforeEach(() => {
+        useSelector.mockImplementation((callback) => {
+            return callback({LoginReducer: {error: false}});
+        });
+    });
     describe("When initialized Login", () => {
         test("should render correctly", () => {
             const {getByTestId} = render(<Login />);
@@ -39,11 +44,17 @@ describe("login", () => {
                 expect(getByRole("alert")).toHaveTextContent("api key es requerido")
             );
         });
-        test.skip("should return 'api key es icorrecto' when apikey is incorrect", async () => {
-            const {getByTestId, getByRole, getByPlaceholderText} = render(<Login />);
+        test("should return 'api key es icorrecto' when apikey is incorrect", async () => {
+            const {getByTestId, getByRole, getByPlaceholderText, state} = renderWithRedux(
+                <Login />
+            );
+
             const input = getByTestId("userid");
             fireEvent.change(input, {target: {value: "abc"}});
             fireEvent.submit(getByTestId("login-form"));
+            useSelector.mockImplementation((callback) => {
+                return callback({LoginReducer: {error: true}});
+            });
             //TODO: revisar script test add params for waitfor
             await waitFor(() =>
                 expect(getByRole("alert")).toHaveTextContent("api key es icorrecto")

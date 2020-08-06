@@ -4,15 +4,16 @@ import {Button, TextField} from "@pacificoseguros/pixie/react";
 
 import "./styles/login.scss";
 import logo from "../../assets/images/logo.png";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {loginAction} from "../../redux/login/actions";
 
 export default function Login() {
     const {handleSubmit, errors, control} = useForm();
-    const [error, setError] = useState(false);
+    //const [error, setError] = useState(false);
     const dispatch = useDispatch();
+    const {error} = useSelector((state) => state.LoginReducer);
+
     const onSubmit = (data) => {
-        console.log("se llamo...");
         dispatch(loginAction(data.userid));
     };
 

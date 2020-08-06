@@ -1,7 +1,6 @@
-const {handleActions} = require("redux-actions");
-
 import initialState from "./state";
 import {LOGIN_ACTION, LOGIN_DONE_ACTION} from "./constants";
+import {handleActions} from "redux-actions";
 const LoginReducer = handleActions(
     {
         [LOGIN_ACTION]: (state) => ({...state, loading: true}),
