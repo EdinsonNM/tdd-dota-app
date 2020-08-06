@@ -1,0 +1,2 @@
+export const LOGIN_ACTION = "LOGIN_ACTION";
+export const LOGIN_DONE_ACTION = "LOGIN_DONE_ACTION";

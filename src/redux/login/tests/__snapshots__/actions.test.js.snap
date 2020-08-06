@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login/actions should create action LOGIN_ACTION 1`] = `
+Object {
+  "type": "LOGIN_ACTION",
+}
+`;
+
+exports[`login/actions should create action LOGIN_DONE_ACTION 1`] = `
+Object {
+  "payload": Array [
+    1,
+    2,
+    3,
+  ],
+  "type": "LOGIN_DONE_ACTION",
+}
+`;

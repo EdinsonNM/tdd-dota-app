@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "@material-ui/core": "^4.11.0",
         "@pacificoseguros/pixie": "0.1.0-beta.21",
         "@testing-library/jest-dom": "^5.11.0",
         "@testing-library/react": "^10.4.3",
@@ -26,7 +27,8 @@
         "redux-observable": "^1.2.0",
         "rxjs": "^6.6.2",
         "web-vitals": "^0.2.4",
-        "webpack-bundle-analyzer": "^3.8.0"
+        "webpack-bundle-analyzer": "^3.8.0",
+        "xhr-mock": "^2.5.1"
     },
     "scripts": {
         "start": "react-scripts start",
@@ -89,5 +91,8 @@
         "hooks": {
             "pre-commit": "lint-staged"
         }
+    },
+    "devDependencies": {
+        "test-data-bot": "^0.8.0"
     }
 }
